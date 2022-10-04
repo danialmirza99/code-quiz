@@ -1,17 +1,20 @@
 var beginButton = document.querySelector("#begin");
-var clock = document.querySelector("#clock");
+var clock = document.getElementById('clock');
 
 
 function startQuiz(){
-    var time = 121; //two min timer
-    var timeTicks = setInterval(function(){
-        time--;
-        clock.textContent = time + " seconds!";
-        if(time ===0){
-            clearInterval(timeTicks);
-            alert("Times Up!");
-        }
-    }, 1000);
+    var time = 2; //two min timer
+    beginButton.addEventListener("click", function(event){
+        clearInterval(timeInterval);
+        var timeInterval = setInterval(function(){
+            time--;
+            clock.textContent = time + " seconds!";
+            if(time === 0){
+                alert("Times Up!");
+                clearInterval(timeInterval);
+            }
+        }, 1000)
+    });
 }
 
 startQuiz();
